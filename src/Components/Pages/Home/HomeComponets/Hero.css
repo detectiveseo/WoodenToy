@@ -1,0 +1,6 @@
+.hero{
+    background-image: url('../../../../img/heroBg.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
