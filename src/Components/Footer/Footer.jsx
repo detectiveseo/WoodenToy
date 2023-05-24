@@ -12,12 +12,12 @@ const Footer = () => {
         <div className='bg-slate-200'>
             <div className='w-11/12 lg:w-10/12 mx-auto pt-7'>
                 <div className='grid grid-cols-1 lg:grid-cols-5'>
-                    <div>
+                    <div className='mb-5'>
                         <img src={logo} width="30%" className='border-2 border-black mb-2' alt="" />
                         <p>Better Kids</p>
                         <p>Better World</p>
                     </div>
-                    <div>
+                    <div className='mb-5'>
                         <ol className='flex flex-col'>
                             <h5 className='font-bold text-2xl'>Menu</h5>
                             <Link to="/coming-soon">Produts</Link>
@@ -27,7 +27,7 @@ const Footer = () => {
                             <Link to="/coming-soon">Contact Us</Link>
                         </ol>
                     </div>
-                    <div>
+                    <div className='mb-5'>
                         <ol className='flex flex-col'>
                             <h5 className='font-bold text-2xl'>Product Categories</h5>
                             <Link to="/coming-soon">Active Play</Link>
@@ -38,7 +38,7 @@ const Footer = () => {
                             <Link to="/coming-soon">Learning & Education</Link>
                         </ol>
                     </div>
-                    <div>
+                    <div className='mb-5'>
                         <ol className='flex flex-col'>
                             <h5 className='font-bold text-2xl'>Corporate</h5>
                             <Link to="/coming-soon">About WoodToys</Link>
