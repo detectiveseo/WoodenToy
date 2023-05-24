@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logo from '../../assets/logo.png'
 import { BsSearch, BsHeart, BsBagCheck } from 'react-icons/bs';
 import { BiUser } from 'react-icons/bi'
 import { AiOutlineMenu } from 'react-icons/ai'
@@ -23,7 +24,7 @@ const Header = () => {
             {/* mainheader  */}
             <div className='w-10/12 mx-auto flex items-center justify-between py-2'>
                 <div className='lg:w-2/12'>
-                    <h1 className='text-4xl font-bold hidden lg:block'>WOOD TOY</h1>
+                    <img src={logo} width="70px" alt="" />
                 </div>
                 <div className='w-full lg:w-8/12'>
                     <form className='flex items-center border'>
