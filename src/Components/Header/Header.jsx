@@ -38,7 +38,7 @@ const Header = () => {
                     </form>
                 </div>
                 <div className='w-0/12 hidden lg:flex text-3xl gap-3'>
-                        <BiUser />
+                        <Link to="/user"><BiUser /></Link>
                         <BsHeart />
                         <BsBagCheck />
                     </div>

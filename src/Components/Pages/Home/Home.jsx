@@ -13,12 +13,13 @@ import reasons2 from '../../../img/reasons-2.webp';
 import reasons3 from '../../../img/reasons-3.webp';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import './Home.css'
+import Marquee from 'react-fast-marquee';
+
 
 const Home = () => {
-        useEffect(() => {
-            AOS.init();
-        }, [])
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
         <div className=' overflow-hidden'>
             <Hero />
@@ -34,7 +35,7 @@ const Home = () => {
                 <div className='text-center w-10/12 mx-auto py-10 lg:py-32'>
                     <h4 className='text-4xl font-bold'>Shop by Age</h4>
                     <hr className='w-1/12 mx-auto mt-5 border-8' />
-                    <div className='grid grid-cols-3 lg:grid-cols-6'>
+                        <div className='grid grid-cols-3 lg:grid-cols-6'>
                         <div className='flex flex-col items-center'>
                             <img src={AgeImg1} alt="" />
                             <p>0-6M</p>
@@ -65,7 +66,7 @@ const Home = () => {
 
             <section className=''>
                 <div className='text-center w-10/12 mx-auto py-10 lg:py-32'>
-                    <h4 className='text-4xl font-bold marquee'>3 Reasons to choose WoodenToy for kids!</h4>
+                    <h4 className='text-4xl font-bold'>3 Reasons to choose WoodenToy for kids!</h4>
                     <hr className='w-2/12 mx-auto mt-5 border-8' />
                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-14'>
                         <div className='flex flex-col items-center'>

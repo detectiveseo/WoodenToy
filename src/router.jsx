@@ -8,6 +8,7 @@ import Blogs from './Components/Pages/Blogs/Blogs';
 
 import SingUp from './Components/Pages/Account/Sing-up/SingUp';
 import SingIn from './Components/Pages/Account/Login/SingIn';
+import LogReg from './Components/Pages/Account/LogReg';
 
 
 const router = createBrowserRouter([
@@ -36,12 +37,18 @@ const router = createBrowserRouter([
                 element: <>coming soon</>
             },
             {
-                path: "/sing-in",
-                element: <SingIn />
-            },
-            {
-                path: "/sing-up",
-                element: <SingUp />
+                path: "/user",
+                element: <LogReg />,
+                children: [
+                    {
+                        path: "/user/sing-in",
+                        element: <SingIn />
+                    },
+                    {
+                        path: "/user/sing-up",
+                        element: <SingUp />
+                    }
+                ]
             }
         ]
     }
