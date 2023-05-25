@@ -38,7 +38,7 @@ const Header = () => {
                     </form>
                 </div>
                 <div className='w-0/12 hidden lg:flex text-3xl gap-3'>
-                        <Link to="/user"><BiUser /></Link>
+                        <Link to="/user/sing-in"><BiUser /></Link>
                         <BsHeart />
                         <BsBagCheck />
                     </div>
@@ -53,7 +53,7 @@ const Header = () => {
                 </div>
 
                 <div className='w-0/12 flex lg:hidden text-3xl gap-3'>
-                    <BiUser />
+                    <Link to="/user/sing-in"><BiUser /></Link>
                     <BsHeart />
                     <BsBagCheck />
                 </div>
