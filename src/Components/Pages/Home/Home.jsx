@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Hero from './HomeComponets/Hero';
 import discover from '../../../img/discover.webp'
 import { Link } from 'react-router-dom';
 import AgeImg1 from '../../../img/0-6M.webp';
 import AgeImg2 from '../../../img/6+M.webp';
 import AgeImg3 from '../../../img/12M +.webp';
-import AgeImg4 from '../../../img/18M+.webp'
-import AgeImg5 from '../../../img/2Y+.webp'
-import AgeImg6 from '../../../img/3Y+.webp'
-import reasons1 from '../../../img/reasons-1.webp'
-import reasons2 from '../../../img/reasons-2.webp'
-import reasons3 from '../../../img/reasons-3.webp'
+import AgeImg4 from '../../../img/18M+.webp';
+import AgeImg5 from '../../../img/2Y+.webp';
+import AgeImg6 from '../../../img/3Y+.webp';
+import reasons1 from '../../../img/reasons-1.webp';
+import reasons2 from '../../../img/reasons-2.webp';
+import reasons3 from '../../../img/reasons-3.webp';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import './Home.css'
 
 const Home = () => {
+        useEffect(() => {
+            AOS.init();
+        }, [])
     return (
-        <div>
+        <div className=' overflow-hidden'>
             <Hero />
 
             <section>
@@ -57,9 +63,9 @@ const Home = () => {
                 </div>
             </section>
 
-            <section>
+            <section className=''>
                 <div className='text-center w-10/12 mx-auto py-10 lg:py-32'>
-                    <h4 className='text-4xl font-bold'>3 Reasons to choose WoodenToy for kids!</h4>
+                    <h4 className='text-4xl font-bold marquee'>3 Reasons to choose WoodenToy for kids!</h4>
                     <hr className='w-2/12 mx-auto mt-5 border-8' />
                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-14'>
                         <div className='flex flex-col items-center'>
@@ -85,7 +91,7 @@ const Home = () => {
 
             <section className='flex justify-center'>
                 <Link className='w-10/12 lg:w-8/12'>
-                    <img className='w-full rounded-lg my-10' src={discover} alt="" />
+                    <img data-aos="zoom-in-down" className='w-full rounded-lg my-10' src={discover} alt="" />
                 </Link>
             </section>
 
