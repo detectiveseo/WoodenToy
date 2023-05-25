@@ -9,6 +9,8 @@ import Blogs from './Components/Pages/Blogs/Blogs';
 import SingUp from './Components/Pages/Account/Sing-up/SingUp';
 import SingIn from './Components/Pages/Account/Login/SingIn';
 import LogReg from './Components/Pages/Account/LogReg';
+import AddToy from './Components/Pages/Add A Toy/AddToy';
+import PrivateRoute from './Components/Providers/PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -49,6 +51,13 @@ const router = createBrowserRouter([
                         element: <SingUp />
                     }
                 ]
+            },
+            {
+                path: "/add-toy",
+                element:
+                    <PrivateRoute>
+                        <AddToy />
+                    </PrivateRoute>
             }
         ]
     }

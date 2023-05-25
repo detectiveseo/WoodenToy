@@ -1,9 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { AuthDetials } from '../../../Providers/AuthProviders';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SingIn = () => {
     const [showPass, setShowPass] = useState(false);
-    const { onSingInFormSubmit, user } = useContext(AuthDetials);
+    const { onSingInFormSubmit, setUser } = useContext(AuthDetials);
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate();
 
     const formHandle = (event) => {
         event.preventDefault();
@@ -11,8 +16,15 @@ const SingIn = () => {
         const email = form.email.value;
         const password = form.password.value;
         onSingInFormSubmit(email, password)
+            .then((res) => {
+                setUser(res.user);
+                navigate(from, { replace: true })
+            }).catch((err) => {
+                alert(err);
+            });
+        form.reset()
     }
-    console.log(user)
+    console.log(location)
 
     return (
         <form onSubmit={formHandle}>

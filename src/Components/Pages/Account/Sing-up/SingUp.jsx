@@ -1,11 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { AuthDetials } from '../../../Providers/AuthProviders';
+import { updateProfile } from 'firebase/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SingUp = () => {
 
     const [showPass, setShowPass] = useState(false);
-    const { onSingUpFormSubmit, user } = useContext(AuthDetials);
-
+    const { onSingUpFormSubmit, auth, setUser, user } = useContext(AuthDetials);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate();
     const formHandle = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -13,9 +17,21 @@ const SingUp = () => {
         const photo = form.photourl.value;
         const email = form.email.value;
         const password = form.password.value;
-        onSingUpFormSubmit(email, password, name, photo);
+        onSingUpFormSubmit(email, password)
+            .then((res) => {
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                    photoURL: photo,
+                }).then((res) => {
+                    setUser(res.user);
+                })
+                navigate(from, { replace: true })
+            }).catch((err) => {
+                alert(err);
+            });
         form.reset();
     }
+    console.log(location);
     return (
         <form onSubmit={formHandle}>
             <div className='flex flex-col w-full  items-center justify-center gap-2'>

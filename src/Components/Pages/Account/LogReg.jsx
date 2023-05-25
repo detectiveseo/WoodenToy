@@ -8,8 +8,6 @@ import { AuthDetials } from '../../Providers/AuthProviders';
 
 const LogReg = () => {
     const {clickToGoogleLogin, user} = useContext(AuthDetials);
-    
-    console.log(import.meta.env.APIKEY_Env)
 
     return (
         <div className=' w-10/12 lg:w-6/12 mx-auto my-20 shadow-lg border'>
@@ -25,7 +23,7 @@ const LogReg = () => {
                         <ActiveRoute to="/user/sing-up">Sing Up</ActiveRoute>
                     </div>
                     <div className='my-7 w-full'>
-                        <Outlet ></Outlet>
+                        <Outlet></Outlet>
                     </div>
                     <div className='w-full flex justify-center items-center gap-5 mb-7'>
                         <hr className='w-full'/>

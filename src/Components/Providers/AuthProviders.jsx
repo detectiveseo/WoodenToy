@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStat
 export const AuthDetials = createContext(null);
 
 const AuthProviders = ({ children }) => {
+    const [loader, setLoader] = useState(true);
     const [user, setUser] = useState(null)
     const auth = getAuth(app);
 
@@ -20,28 +21,13 @@ const AuthProviders = ({ children }) => {
 
 
     // sing  up with form 
-    const onSingUpFormSubmit = (email, password, userName, photo) => {
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((res) => {
-            updateProfile(auth.currentUser, {
-                displayName: userName,
-                photoURL: photo,
-            }).then((res) => {
-                setUser(res.user);
-            })
-        }).catch((err) => {
-            alert(err);
-        })
+    const onSingUpFormSubmit = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
     }
 
     //sing in with form
     const onSingInFormSubmit = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
-        .then((res) => {
-            setUser(res.user);
-        }).catch((err) => {
-            alert(err);
-        })
+       return signInWithEmailAndPassword(auth, email, password);
     }
 
     //click to log out
@@ -57,6 +43,7 @@ const AuthProviders = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentuser) => {
             setUser(currentuser);
+            setLoader(false)
         })
         return () => {
             unSubscribe();
@@ -64,7 +51,11 @@ const AuthProviders = ({ children }) => {
     },[])
 
     const sharedData = {
+        loader,
+        setLoader,
+        auth,
         user,
+        setUser,
         onSingUpFormSubmit,
         onSingInFormSubmit,
         clickToGoogleLogin,

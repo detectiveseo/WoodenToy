@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../assets/logo.png'
 import { BsSearch, BsHeart, BsBagCheck } from 'react-icons/bs';
 import { BiUser } from 'react-icons/bi'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { RxCross1 } from 'react-icons/rx'
 import { Link } from 'react-router-dom';
+import { AuthDetials } from '../Providers/AuthProviders';
 
 
 
 const Header = () => {
+    const { clickToLogOut, user, loader } = useContext(AuthDetials);
     const [mobileMenu, setMobileMenu] = useState(false)
     const mobileMenuhandle = () => {
         setMobileMenu(!mobileMenu)
@@ -38,17 +40,39 @@ const Header = () => {
                     </form>
                 </div>
                 <div className='w-0/12 hidden lg:flex text-3xl gap-3'>
-                        <Link to="/user/sing-in"><BiUser /></Link>
-                        <BsHeart />
-                        <BsBagCheck />
-                    </div>
+                    <Link
+                        className={user ? "hidden" : "block"}
+                        to="/user/sing-in"><BiUser /></Link>
+
+                    <Link to="/" className={!user ? "hidden" : "block"}><BiUser />
+                        {
+                            loader ? <div className='flex items-center justify-center text-sm'>Loading ...</div> :
+
+                                <div
+                                    className='absolute right-0 top-0 h-full z-10 bg-white p-3 text-sm w-96 flex flex-col justify-center items-center'>
+                                    <img 
+                                    className='w-20 rounded-full'
+                                    src={user?.photoURL} alt="" />
+                                    <ol>
+                                        <li className='text-2xl text-center font-bold' >{user?.displayName}</li>
+                                        <li>{user?.email}</li>
+                                        <button 
+                                        className='btn'
+                                        onClick={clickToLogOut}>Log Out</button>
+                                    </ol>
+                                </div>
+                        }
+                    </Link>
+                    <BsHeart />
+                    <BsBagCheck />
+                </div>
             </div>
 
             {/* navigation  */}
             <div className=' bg-slate-200 p-4 flex items-center justify-between relative'>
-                <div 
-                onClick={mobileMenuhandle}
-                className='block lg:hidden text-3xl cursor-pointer'>
+                <div
+                    onClick={mobileMenuhandle}
+                    className='block lg:hidden text-3xl cursor-pointer'>
                     {!mobileMenu ? < AiOutlineMenu /> : <RxCross1 />}
                 </div>
 
@@ -62,14 +86,14 @@ const Header = () => {
                     <Link to="/">Home</Link>
                     <Link to="/">All Toys</Link>
                     <Link to="/">Blogs</Link>
-                    <Link to="/">Add A Toy</Link>
+                    <Link to="/add-toy">Add A Toy</Link>
                 </div>
 
                 <div className={`w-full mx-auto flex-col lg:hidden gap-6 text-1xl absolute top-14 p-5 left-0 bg-slate-300 ${mobileMenu ? "flex" : "hidden"}`}>
                     <Link to="/">Home</Link>
                     <Link to="/">All Toys</Link>
                     <Link to="/">Blogs</Link>
-                    <Link to="/">Add A Toy</Link>
+                    <Link to="/add-toy">Add A Toy</Link>
                 </div>
             </div>
         </div>
