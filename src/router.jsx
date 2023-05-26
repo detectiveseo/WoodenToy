@@ -11,6 +11,8 @@ import SingIn from './Components/Pages/Account/Login/SingIn';
 import LogReg from './Components/Pages/Account/LogReg';
 import AddToy from './Components/Pages/Add A Toy/AddToy';
 import PrivateRoute from './Components/Providers/PrivateRoute';
+import Profile from './Components/Pages/Account/Profile/Profile';
+import NotFound from './Components/Pages/404/NotFound';
 
 
 const router = createBrowserRouter([
@@ -23,8 +25,9 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: "/shop",
-                element: <AllToys />
+                path: "/all-toys",
+                element: <AllToys />,
+                loader: () => fetch("http://localhost:3000/products")
             },
             {
                 path: "/my-toys",
@@ -53,6 +56,14 @@ const router = createBrowserRouter([
                 ]
             },
             {
+                path: "/profile",
+                element:
+                    <PrivateRoute>
+                        <Profile />
+                    </PrivateRoute>
+
+            },
+            {
                 path: "/add-toy",
                 element:
                     <PrivateRoute>
@@ -60,6 +71,10 @@ const router = createBrowserRouter([
                     </PrivateRoute>
             }
         ]
+    },
+    {
+        path: "*",
+        element: <NotFound />
     }
 ])
 export default router;
