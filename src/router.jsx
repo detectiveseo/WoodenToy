@@ -13,6 +13,8 @@ import AddToy from './Components/Pages/Add A Toy/AddToy';
 import PrivateRoute from './Components/Providers/PrivateRoute';
 import Profile from './Components/Pages/Account/Profile/Profile';
 import NotFound from './Components/Pages/404/NotFound';
+import ProteactLogin from './Components/Providers/ProteactLogin';
+import SingleToy from './Components/Pages/All Toys/SingleToy';
 
 
 const router = createBrowserRouter([
@@ -30,6 +32,11 @@ const router = createBrowserRouter([
                 loader: () => fetch("http://localhost:3000/products")
             },
             {
+                path: "/toy/:id",
+                element: <SingleToy />,
+                loader: ({params}) => fetch(`http://localhost:3000/products/${params.id}`)
+            },
+            {
                 path: "/my-toys",
                 element: <MyToys />
             },
@@ -43,7 +50,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/user",
-                element: <LogReg />,
+                element: <ProteactLogin><LogReg /></ProteactLogin>,
                 children: [
                     {
                         path: "/user/sing-in",

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthDetials } from '../../Providers/AuthProviders';
+import { Link } from 'react-router-dom';
 
 const AllToys = () => {
     const { loader } = useContext(AuthDetials);
@@ -20,17 +21,19 @@ const AllToys = () => {
             </div>
             <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
                 {
-                    loadedProducts.map(products => {
+                    loadedProducts.map(product => {
                         return (
                             <div
-                                key={products._id}>
+                                key={product._id}>
                                 <img
                                     className='w-full h-48 lg:h-80 object-cover'
-                                    src={products.image} alt="" />
+                                    src={product.image} alt="" />
                                 <div className='flex flex-col justify-center text-center gap-2'>
-                                    <h5>{products.name}</h5>
-                                    <h5>$ {products.price}</h5>
-                                    <button className='btn'>See Details</button>
+                                    <h5>{product.name}</h5>
+                                    <h5>$ {product.price}</h5>
+                                    <Link to={`/toy/${product._id}`}>
+                                        <button className='btn'>See Details</button>
+                                    </Link>
                                 </div>
                             </div>
                         )
