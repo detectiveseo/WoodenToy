@@ -65,10 +65,10 @@ const Home = () => {
                 </div>
             </section>
 
-            <section>
+            <section className='bg-slate-200'>
                 <div className='text-center w-10/12 mx-auto py-10 lg:py-32'>
                     <h4 className='text-4xl font-bold'>Shop by Age</h4>
-                    <hr className='w-1/12 mx-auto mt-5 border-8' />
+                    <hr className='w-1/12 mx-auto mt-5 border-8 border-slate-500' />
                     <div className='grid grid-cols-3 lg:grid-cols-6'>
                         <div className='flex flex-col items-center'>
                             <img src={AgeImg1} alt="" />
