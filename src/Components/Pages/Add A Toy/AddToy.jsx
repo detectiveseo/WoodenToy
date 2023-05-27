@@ -15,24 +15,33 @@ const AddToy = () => {
                 <div className="flex flex-col gap-4 border p-7 rounded bg-slate-200">
                     <label
                         className='text-2xl font-bold w-full'
-                        htmlFor="title">Title
+                        htmlFor="name">Name
                         <input
                             className='border w-full p-2 font-sans font-normal rounded'
-                            type="text" name='id' id='title' placeholder='Toy Title' />
+                            type="text" name='name' id='name' placeholder='Toy Name' />
                     </label>
 
                     <label
                         className='text-2xl font-bold w-full'
-                        htmlFor="title">Creator Name
+                        htmlFor="name">Image
                         <input
                             className='border w-full p-2 font-sans font-normal rounded'
-                            type="text" name='creator_name' id='creator_name' placeholder={user ? user?.displayName : "Creator Name"} />
+                            type="text" name='image' id='image' placeholder='image link' />
                     </label>
 
-                    <div className="flex justify-between w-full">
+                    <label
+                            className='text-2xl font-bold'
+                            htmlFor="category">Category<br />
+                            <input
+                                className='border w-full p-2 font-sans font-normal rounded'
+                                type="text" name='category' id='category' placeholder="category" />
+                    </label>
+
+                    <div className="grid grid-cols-2 gap-4 justify-between w-full">
+                        
                         <label
                             className='text-2xl font-bold'
-                            htmlFor="title">Price<br />
+                            htmlFor="price">Price<br />
                             <input
                                 className='border w-full p-2 font-sans font-normal rounded'
                                 type="number" name='price' id='price' placeholder="$" />
@@ -40,18 +49,35 @@ const AddToy = () => {
 
                         <label
                             className='text-2xl font-bold'
-                            htmlFor="title">Stock<br />
+                            htmlFor="height">Height<br />
                             <input
                                 className='border w-full p-2 font-sans font-normal rounded'
-                                type="number" name='stock' id='stock' placeholder="Stock" />
+                                type="text" name='height' id='height' placeholder="height" />
+                        </label>
+
+                        <label
+                            className='text-2xl font-bold'
+                            htmlFor="length">Length<br />
+                            <input
+                                className='border w-full p-2 font-sans font-normal rounded'
+                                type="text" name='length' id='length' placeholder="length" />
+                        </label>
+
+                        <label
+                            className='text-2xl font-bold'
+                            htmlFor="width">Width<br />
+                            <input
+                                className='border w-full p-2 font-sans font-normal rounded'
+                                type="text" name='width' id='width' placeholder="width" />
                         </label>
                     </div>
 
                     <label
                             className='text-2xl font-bold'
-                            htmlFor="title">Stock<br />
+                            htmlFor="description">Description<br />
                             <textarea 
                             className="w-full borde roundedr font-normal p-2"
+                            placeholder='Write your description'
                             name="description" id="description" cols="30" rows="10"></textarea>
                     </label>
                     

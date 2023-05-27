@@ -30,6 +30,11 @@ const AuthProviders = ({ children }) => {
        return signInWithEmailAndPassword(auth, email, password);
     }
 
+
+    const updateUser = (name, photo) => {
+        return updateProfile(auth.currentUser, {displayName: name, photoURL: photo})
+    }
+
     //click to log out
     const clickToLogOut = () => {
         signOut(auth).then(() => {
@@ -53,6 +58,7 @@ const AuthProviders = ({ children }) => {
     const sharedData = {
         loader,
         setLoader,
+        updateUser,
         auth,
         user,
         setUser,

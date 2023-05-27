@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Hero from './HomeComponets/Hero';
 import discover from '../../../img/discover.webp'
 import { Link } from 'react-router-dom';
@@ -14,18 +14,23 @@ import reasons3 from '../../../img/reasons-3.webp';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Marquee from 'react-fast-marquee';
+import { AuthDetials } from '../../Providers/AuthProviders';
+import Gallary from './HomeComponets/Gallary';
 
 
 const Home = () => {
     useEffect(() => {
         AOS.init();
-    }, [])
-    const [products, setProducts] = useState([])
+    }, []);
+
+    const [products, setProducts] = useState([]);
+    const { loader, setLoader } = useContext(AuthDetials);
     useEffect(() => {
         const loaderData = async () => {
             const responce = await fetch("http://localhost:3000/products");
             const data = await responce.json();
             setProducts(data);
+            setLoader(false)
         }
         loaderData();
     }, [])
@@ -37,25 +42,26 @@ const Home = () => {
                 <div className='text-center w-10/12 mx-auto py-10 lg:py-32'>
                     <h4 className='text-4xl font-bold'>New Products 2023</h4>
                     <hr className='w-1/12 mx-auto mt-5 border-8' />
-                    <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
-                        {products.slice(0, 8).map(product => {
-                            console.log(product)
-                            return (
-                                <div
-                                    key={product._id}>
-                                    <img
-                                        className='w-full h-48 lg:h-80 object-cover'
-                                        src={product.image} alt="" />
-                                    <div className='flex flex-col justify-center text-center gap-2'>
-                                        <h5>{product.name}</h5>
-                                        <h5>$ {product.price}</h5>
-                                        <Link to={`/toy/${product._id}`}>
-                                            <button className='btn'>See Details</button>
-                                        </Link>
-                                    </div>
-                                </div>)
-                        })}
-                    </div>
+                    {
+                        loader ? <div className='text-8xl'>Loading...</div> : <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
+                            {products.slice(0, 8).map(product => {
+                                return (
+                                    <div
+                                        key={product._id}>
+                                        <img
+                                            className='w-full h-48 lg:h-80 object-cover'
+                                            src={product.image} alt="" />
+                                        <div className='flex flex-col justify-center text-center gap-2'>
+                                            <h5>{product.name}</h5>
+                                            <h5>$ {product.price}</h5>
+                                            <Link to={`/toy/${product._id}`}>
+                                                <button className='btn'>See Details</button>
+                                            </Link>
+                                        </div>
+                                    </div>)
+                            })}
+                        </div>
+                    }
                 </div>
             </section>
 
@@ -91,6 +97,8 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
+            <Gallary />
 
             <section className=''>
                 <div className='text-center w-10/12 mx-auto py-10 lg:py-32'>

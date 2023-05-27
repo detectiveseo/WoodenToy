@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const SingUp = () => {
 
     const [showPass, setShowPass] = useState(false);
-    const { onSingUpFormSubmit, auth, setUser, user } = useContext(AuthDetials);
+    const { onSingUpFormSubmit, auth, setUser, user, updateUser } = useContext(AuthDetials);
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
@@ -19,13 +19,10 @@ const SingUp = () => {
         const password = form.password.value;
         onSingUpFormSubmit(email, password)
             .then((res) => {
-                updateProfile(auth.currentUser, {
-                    displayName: name,
-                    photoURL: photo,
-                }).then((res) => {
-                    setUser(res.user);
+                updateUser(name, photo)
+                .then(() => {
+                    navigate(from, { replace: true })
                 })
-                navigate(from, { replace: true })
             }).catch((err) => {
                 alert(err);
             });
