@@ -59,16 +59,7 @@ const AddToy = () => {
         return <div>Loading..</div>
     }
     return (
-        <div className='flex relative border-y border-slate-300'>
-            <div className='hidden bg-slate-200 w-96 p-20 lg:flex flex-col gap-4 text-2xl text-slate-500'>
-                <div 
-                className='w-20 flex flex-col justify-center items-center mx-auto'
-                ><img className='mask mask-squircle w-full' src={user?.photoURL} alt="" /></div>
-                <p className='border p-3 text-center bg-slate-300'>Add A Toy</p>
-                <p className='border p-3 text-center bg-slate-300'>Edit A Toy</p>
-                <p className='border p-3 text-center bg-slate-300'>My Toys</p>
-            </div>
-            <div className='w-10/12 mx-auto'>
+            <div className='w-12/12 mx-auto'>
                 <ToastContainer
                     theme='light' />
                 <form onSubmit={handleForm}>
@@ -164,8 +155,6 @@ const AddToy = () => {
                     </div>
                 </form>
             </div>
-
-        </div>
     );
 };
 

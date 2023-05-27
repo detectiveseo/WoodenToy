@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Hero from './HomeComponets/Hero';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import discover from '../../../img/discover.webp'
 import { Link } from 'react-router-dom';
 import AgeImg1 from '../../../img/0-6M.webp';
@@ -38,30 +40,51 @@ const Home = () => {
         <div className=' overflow-hidden'>
             <Hero />
 
+
             <section>
-                <div className='text-center w-10/12 mx-auto py-10 lg:py-32'>
+                <div className=' w-10/12 mx-auto py-10 lg:py-32'>
                     <h4 className='text-4xl font-bold'>New Products 2023</h4>
-                    <hr className='w-1/12 mx-auto mt-5 border-8' />
-                    {
-                        loader ? <div className='text-8xl'>Loading...</div> : <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
-                            {products.slice(0, 8).map(product => {
-                                return (
-                                    <div
-                                        key={product._id}>
-                                        <img
-                                            className='w-full h-48 lg:h-80 object-cover'
-                                            src={product.image} alt="" />
-                                        <div className='flex flex-col justify-center text-center gap-2'>
-                                            <h5>{product.name}</h5>
-                                            <h5>$ {product.price}</h5>
-                                            <Link to={`/toy/${product._id}`}>
-                                                <button className='btn'>See Details</button>
-                                            </Link>
-                                        </div>
-                                    </div>)
-                            })}
-                        </div>
-                    }
+                    <hr className='w-1/12 mt-2 border-8 mb-10' />
+
+
+                    <Tabs>
+                        <TabList>
+                            <Tab>Car</Tab>
+                            <Tab>Block</Tab>
+                            <Tab>Doll</Tab>
+                        </TabList>
+
+                        <TabPanel>
+                            {
+                                loader ? <div className='text-8xl'>Loading...</div> : <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
+                                    {products.slice(0, 8).map(product => {
+                                        return (
+                                            <div
+                                                key={product._id}>
+                                                <img
+                                                    className='w-full h-48 lg:h-80 object-cover'
+                                                    src={product.image} alt="" />
+                                                <div className='flex flex-col justify-center text-center gap-2'>
+                                                    <h5>{product.name}</h5>
+                                                    <h5>$ {product.price}</h5>
+                                                    <Link to={`/toy/${product._id}`}>
+                                                        <button className='btn'>See Details</button>
+                                                    </Link>
+                                                </div>
+                                            </div>)
+                                    })}
+                                </div>
+                            }
+                        </TabPanel>
+                        <TabPanel>
+                            <h2>Content for Tab 2</h2>
+                            <p>This is the content of Tab 2.</p>
+                        </TabPanel>
+                        <TabPanel>
+                            <h2>Content for Tab 3</h2>
+                            <p>This is the content of Tab 3.</p>
+                        </TabPanel>
+                    </Tabs>
                 </div>
             </section>
 

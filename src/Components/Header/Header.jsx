@@ -76,14 +76,14 @@ const Header = () => {
                     <Link to="/">Home</Link>
                     <Link to="/all-toys">All Toys</Link>
                     <Link to="/blog">Blogs</Link>
-                    <Link to="/add-toy">Add A Toy</Link>
+                    <Link to="/profile/add_product">Add A Toy</Link>
                 </div>
 
                 <div className={`w-full mx-auto flex-col lg:hidden gap-6 text-1xl absolute top-14 p-5 left-0 bg-slate-300 ${mobileMenu ? "flex" : "hidden"}`}>
                     <Link to="/">Home</Link>
                     <Link to="/all-toys">All Toys</Link>
                     <Link to="/blog">Blogs</Link>
-                    <Link to="/add-toy">Add A Toy</Link>
+                    <Link to="/profile/add_product">Add A Toy</Link>
                 </div>
             </div>
         </div>
