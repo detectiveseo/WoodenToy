@@ -15,6 +15,7 @@ import Profile from './Components/Pages/Account/Profile/Profile';
 import NotFound from './Components/Pages/404/NotFound';
 import ProteactLogin from './Components/Providers/ProteactLogin';
 import SingleToy from './Components/Pages/All Toys/SingleToy';
+import EditToy from './Components/Pages/My Toys/EditToy';
 
 
 const router = createBrowserRouter([
@@ -73,10 +74,9 @@ const router = createBrowserRouter([
                     element: <AddToy />
                 },
                 {
-                    path: "/profile/my-toys/:email",
+                    path: "/profile/my-toys",
                     element: <MyToys />,
-                    loader: ({params}) => fetch(`http://localhost:3000/my-toys?email=${params.email}`)
-                }
+                },
                 ]
 
             },
@@ -86,6 +86,11 @@ const router = createBrowserRouter([
                     <PrivateRoute>
                         <AddToy />
                     </PrivateRoute>
+            },
+            {
+                path: "/edit/:id",
+                element: <EditToy />,
+                loader: ({params}) => fetch(`http://localhost:3000/products/${params.id}`) 
             }
         ]
     },

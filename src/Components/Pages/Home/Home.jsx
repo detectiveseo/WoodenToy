@@ -29,13 +29,21 @@ const Home = () => {
     const { loader, setLoader } = useContext(AuthDetials);
     useEffect(() => {
         const loaderData = async () => {
-            const responce = await fetch("http://localhost:3000/products");
+            const responce = await fetch("http://localhost:3000/catagory?catagory=car");
             const data = await responce.json();
             setProducts(data);
             setLoader(false)
         }
         loaderData();
     }, [])
+
+    const dataHandleForTab = async(category) => {
+        const responce = await fetch(`http://localhost:3000/catagory?catagory=${category}`);
+        const data = await responce.json();
+        setProducts(data);
+        console.log("hello")
+    }
+
     return (
         <div className=' overflow-hidden'>
             <Hero />
@@ -45,13 +53,33 @@ const Home = () => {
                 <div className=' w-10/12 mx-auto py-10 lg:py-32'>
                     <h4 className='text-4xl font-bold'>New Products 2023</h4>
                     <hr className='w-1/12 mt-2 border-8 mb-10' />
+                    {/* <div>{
+                        loader ? <div className='text-8xl'>Loading...</div> : <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
+                            {products.slice(0, 8).map(product => {
+                                return (
+                                    <div
+                                        key={product._id}>
+                                        <img
+                                            className='w-full h-48 lg:h-80 object-cover'
+                                            src={product.image} alt="" />
+                                        <div className='flex flex-col justify-center text-center gap-2'>
+                                            <h5>{product.name}</h5>
+                                            <h5>$ {product.price}</h5>
+                                            <Link to={`/toy/${product._id}`}>
+                                                <button className='btn'>See Details</button>
+                                            </Link>
+                                        </div>
+                                    </div>)
+                            })}
+                        </div>
+                    }</div> */}
 
 
                     <Tabs>
                         <TabList>
-                            <Tab>Car</Tab>
-                            <Tab>Block</Tab>
-                            <Tab>Doll</Tab>
+                            <Tab onClick={() => dataHandleForTab("car")}>Car</Tab>
+                            <Tab onClick={() => dataHandleForTab("puzzel")}>Puzzel</Tab>
+                            <Tab onClick={() => dataHandleForTab("classic")}>Classic</Tab>
                         </TabList>
 
                         <TabPanel>
@@ -76,15 +104,31 @@ const Home = () => {
                                 </div>
                             }
                         </TabPanel>
+
                         <TabPanel>
-                            <h2>Content for Tab 2</h2>
-                            <p>This is the content of Tab 2.</p>
-                        </TabPanel>
-                        <TabPanel>
-                            <h2>Content for Tab 3</h2>
-                            <p>This is the content of Tab 3.</p>
+                            {
+                                loader ? <div className='text-8xl'>Loading...</div> : <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
+                                    {products.slice(0, 8).map(product => {
+                                        return (
+                                            <div
+                                                key={product._id}>
+                                                <img
+                                                    className='w-full h-48 lg:h-80 object-cover'
+                                                    src={product.image} alt="" />
+                                                <div className='flex flex-col justify-center text-center gap-2'>
+                                                    <h5>{product.name}</h5>
+                                                    <h5>$ {product.price}</h5>
+                                                    <Link to={`/toy/${product._id}`}>
+                                                        <button className='btn'>See Details</button>
+                                                    </Link>
+                                                </div>
+                                            </div>)
+                                    })}
+                                </div>
+                            }
                         </TabPanel>
                     </Tabs>
+
                 </div>
             </section>
 

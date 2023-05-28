@@ -21,7 +21,7 @@ const Profile = () => {
                 <div className='flex flex-col gap-2'>
                     <ActiveRoute to="/profile/add_product">Add A Toy</ActiveRoute>
 
-                    <ActiveRoute to={`/profile/my-toys/${user.email}`}>My Toys</ActiveRoute>
+                    <ActiveRoute to={`/profile/my-toys?${user.email}`}>My Toys</ActiveRoute>
                     <button
                         onClick={clickToLogOut}
                         className='btn mt-4'>Log Out
