@@ -18,6 +18,7 @@ import 'aos/dist/aos.css';
 import Marquee from 'react-fast-marquee';
 import { AuthDetials } from '../../Providers/AuthProviders';
 import Gallary from './HomeComponets/Gallary';
+import Product from './HomeComponets/Product';
 
 
 const Home = () => {
@@ -25,24 +26,10 @@ const Home = () => {
         AOS.init();
     }, []);
 
-    const [products, setProducts] = useState([]);
     const { loader, setLoader } = useContext(AuthDetials);
-    useEffect(() => {
-        const loaderData = async () => {
-            const responce = await fetch("http://localhost:3000/catagory?catagory=car");
-            const data = await responce.json();
-            setProducts(data);
-            setLoader(false)
-        }
-        loaderData();
-    }, [])
 
-    const dataHandleForTab = async(category) => {
-        const responce = await fetch(`http://localhost:3000/catagory?catagory=${category}`);
-        const data = await responce.json();
-        setProducts(data);
-        console.log("hello")
-    }
+
+
 
     return (
         <div className=' overflow-hidden'>
@@ -53,82 +40,7 @@ const Home = () => {
                 <div className=' w-10/12 mx-auto py-10 lg:py-32'>
                     <h4 className='text-4xl font-bold'>New Products 2023</h4>
                     <hr className='w-1/12 mt-2 border-8 mb-10' />
-                    {/* <div>{
-                        loader ? <div className='text-8xl'>Loading...</div> : <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
-                            {products.slice(0, 8).map(product => {
-                                return (
-                                    <div
-                                        key={product._id}>
-                                        <img
-                                            className='w-full h-48 lg:h-80 object-cover'
-                                            src={product.image} alt="" />
-                                        <div className='flex flex-col justify-center text-center gap-2'>
-                                            <h5>{product.name}</h5>
-                                            <h5>$ {product.price}</h5>
-                                            <Link to={`/toy/${product._id}`}>
-                                                <button className='btn'>See Details</button>
-                                            </Link>
-                                        </div>
-                                    </div>)
-                            })}
-                        </div>
-                    }</div> */}
-
-
-                    <Tabs>
-                        <TabList>
-                            <Tab onClick={() => dataHandleForTab("car")}>Car</Tab>
-                            <Tab onClick={() => dataHandleForTab("puzzel")}>Puzzel</Tab>
-                            <Tab onClick={() => dataHandleForTab("classic")}>Classic</Tab>
-                        </TabList>
-
-                        <TabPanel>
-                            {
-                                loader ? <div className='text-8xl'>Loading...</div> : <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
-                                    {products.slice(0, 8).map(product => {
-                                        return (
-                                            <div
-                                                key={product._id}>
-                                                <img
-                                                    className='w-full h-48 lg:h-80 object-cover'
-                                                    src={product.image} alt="" />
-                                                <div className='flex flex-col justify-center text-center gap-2'>
-                                                    <h5>{product.name}</h5>
-                                                    <h5>$ {product.price}</h5>
-                                                    <Link to={`/toy/${product._id}`}>
-                                                        <button className='btn'>See Details</button>
-                                                    </Link>
-                                                </div>
-                                            </div>)
-                                    })}
-                                </div>
-                            }
-                        </TabPanel>
-
-                        <TabPanel>
-                            {
-                                loader ? <div className='text-8xl'>Loading...</div> : <div className='grid grid-cols-2 lg:grid-cols-4 gap-10'>
-                                    {products.slice(0, 8).map(product => {
-                                        return (
-                                            <div
-                                                key={product._id}>
-                                                <img
-                                                    className='w-full h-48 lg:h-80 object-cover'
-                                                    src={product.image} alt="" />
-                                                <div className='flex flex-col justify-center text-center gap-2'>
-                                                    <h5>{product.name}</h5>
-                                                    <h5>$ {product.price}</h5>
-                                                    <Link to={`/toy/${product._id}`}>
-                                                        <button className='btn'>See Details</button>
-                                                    </Link>
-                                                </div>
-                                            </div>)
-                                    })}
-                                </div>
-                            }
-                        </TabPanel>
-                    </Tabs>
-
+                    <Product />
                 </div>
             </section>
 
@@ -165,8 +77,6 @@ const Home = () => {
                 </div>
             </section>
 
-            <Gallary />
-
             <section className=''>
                 <div className='text-center w-10/12 mx-auto py-10 lg:py-32'>
                     <h4 className='text-4xl font-bold'>3 Reasons to choose WoodenToy for kids!</h4>
@@ -193,13 +103,15 @@ const Home = () => {
             </section>
 
 
-            <section className='flex justify-center'>
-                <Link className='w-10/12 lg:w-8/12'>
-                    <img data-aos="zoom-in-down" className='w-full rounded-lg my-10' src={discover} alt="" />
-                </Link>
-            </section>
+            <section className='flex justify-center items-center'>
+                <div className='text-center mx-auto pt-10 lg:py-5'>
+                    <h4 className='text-4xl font-bold'>All Sustainably-Made, follow us on Instagram for your child development</h4>
+                    <hr className='w-1/12 mx-auto mt-5 border-8 border-slate-500' />
+                    <Gallary />
+                </div>
+            </section >
 
-        </div>
+        </div >
     );
 };
 

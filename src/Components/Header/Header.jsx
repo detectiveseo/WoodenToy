@@ -4,7 +4,7 @@ import { BsSearch, BsHeart, BsBagCheck } from 'react-icons/bs';
 import { BiUser } from 'react-icons/bi'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { RxCross1 } from 'react-icons/rx'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthDetials } from '../Providers/AuthProviders';
 
 
@@ -14,6 +14,14 @@ const Header = () => {
     const [mobileMenu, setMobileMenu] = useState(false)
     const mobileMenuhandle = () => {
         setMobileMenu(!mobileMenu)
+    }
+    const navigate = useNavigate();
+    const handleSearch = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const searchFiled = form.search.value;
+        navigate(`/all-toys/${searchFiled}`);
+        form.reset();
     }
     return (
         <div>
@@ -29,12 +37,15 @@ const Header = () => {
                     <img src={logo} width="70px" alt="" />
                 </div>
                 <div className='w-full lg:w-8/12'>
-                    <form className='flex items-center border'>
+                    <form 
+                    onSubmit={handleSearch}
+                    className='flex items-center border'>
                         <input
                             className='w-full p-3'
-                            type="text" placeholder='Search our store' />
+                            name='search'
+                            type="text" placeholder='Search here Toys' />
                         <input
-                            className=' bg-slate-300 py-3 px-5 uppercase'
+                            className=' bg-slate-300 py-3 px-5 uppercase cursor-pointer'
                             type="submit"
                             value="Search" />
                     </form>
