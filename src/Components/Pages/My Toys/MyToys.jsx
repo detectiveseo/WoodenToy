@@ -15,7 +15,7 @@ const MyToys = () => {
 
     useEffect(() => {
         const loadingData = async () => {
-            const responce = await fetch(`http://localhost:3000/my-toys?email=${email}`)
+            const responce = await fetch(`https://server-side-detectiveseo.vercel.app/my-toys?email=${email}`)
             const data = await responce.json();
             setProducts(data)
         }
@@ -38,7 +38,7 @@ const MyToys = () => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/product/${id}`, {
+                fetch(`https://server-side-detectiveseo.vercel.app/product/${id}`, {
                     method: "DELETE",
                 }).then((res) => res.json())
                 .then((data) => {

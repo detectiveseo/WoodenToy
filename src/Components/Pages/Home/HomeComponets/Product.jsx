@@ -10,7 +10,7 @@ const Product = () => {
 
     useEffect(() => {
         const loaderData = async () => {
-            const responce = await fetch("http://localhost:3000/catagory?catagory=car");
+            const responce = await fetch("https://server-side-detectiveseo.vercel.app/catagory?catagory=car");
             const data = await responce.json();
             setProducts(data);
             setLoader(false)
@@ -19,7 +19,7 @@ const Product = () => {
     }, [])
 
     const dataHandleForTab = async(category = "car") => {
-        const responce = await fetch(`http://localhost:3000/catagory?catagory=${category}`);
+        const responce = await fetch(`https://server-side-detectiveseo.vercel.app/catagory?catagory=${category}`);
         const data = await responce.json();
         setProducts(data);
         setLoader(false);

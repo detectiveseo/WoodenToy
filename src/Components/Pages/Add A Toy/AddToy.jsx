@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddToy = () => {
     const { user, loader } = useContext(AuthDetials);
-    console.log(user)
     const notify = () => toast.success("Your Product Has Been Added", {
         position: "bottom-right"
     });
@@ -41,7 +40,7 @@ const AddToy = () => {
             description,
         }
 
-        fetch("http://localhost:3000/add-new", {
+        fetch("https://server-side-detectiveseo.vercel.app/add-new", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

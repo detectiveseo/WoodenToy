@@ -24,7 +24,6 @@ const SingIn = () => {
             });
         form.reset()
     }
-    console.log(location)
 
     return (
         <form onSubmit={formHandle}>

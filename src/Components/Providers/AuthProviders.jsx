@@ -5,7 +5,8 @@ export const AuthDetials = createContext(null);
 
 const AuthProviders = ({ children }) => {
     const [loader, setLoader] = useState(true);
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null);
+    const [searchkey, setSearchKey] = useState(null);
     const auth = getAuth(app);
 
     // sing up with google 
@@ -56,6 +57,8 @@ const AuthProviders = ({ children }) => {
     },[])
 
     const sharedData = {
+        searchkey,
+        setSearchKey,
         loader,
         setLoader,
         updateUser,

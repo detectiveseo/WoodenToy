@@ -16,7 +16,6 @@ const SingleToy = () => {
         if (!quantity < 1)
             setquantity(quantity - 1)
     }
-    console.log(loeaderData);
     const { _id, name, description, dimensions, image, price } = loeaderData
     return (
         <div className='w-10/12 lg:w-8/12 mx-auto'>

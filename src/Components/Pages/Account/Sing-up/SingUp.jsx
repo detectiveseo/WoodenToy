@@ -28,7 +28,6 @@ const SingUp = () => {
             });
         form.reset();
     }
-    console.log(location);
     return (
         <form onSubmit={formHandle}>
             <div className='flex flex-col w-full  items-center justify-center gap-2'>

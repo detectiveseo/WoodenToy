@@ -30,24 +30,18 @@ const router = createBrowserRouter([
             {
                 path: "/all-toys",
                 element: <AllToys />,
-                loader: () => fetch("http://localhost:3000/products")
-            },
-            {
-                path: "/all-toys/:name",
-                element: <AllToys />,
-                loader: ({params}) => fetch(`http://localhost:3000/items/?products=${params.name}`)
             },
             {
                 path: "/toy/:id",
                 element: <PrivateRoute><SingleToy /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://server-side-detectiveseo.vercel.app/products/${params.id}`)
             },
             {
                 path: "/my-toys",
                 element: <MyToys />
             },
             {
-                path: "/blgos",
+                path: "/blogs",
                 element: <Blogs />
             },
             {
@@ -95,7 +89,7 @@ const router = createBrowserRouter([
             {
                 path: "/edit/:id",
                 element: <EditToy />,
-                loader: ({params}) => fetch(`http://localhost:3000/products/${params.id}`) 
+                loader: ({params}) => fetch(`https://server-side-detectiveseo.vercel.app/products/${params.id}`) 
             }
         ]
     },

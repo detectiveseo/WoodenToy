@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const EditToy = () => {
     const product = useLoaderData();
+    const id = product._id;
     const notify = () => toast.success("Your Product Has Changed", {
         position: "bottom-right"
     });
@@ -35,7 +36,13 @@ const EditToy = () => {
             },
             description,
         }
-        console.log(newProdductData);
+        fetch(`https://server-side-detectiveseo.vercel.app/update/${id}`,{
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newProdductData),
+        }).then((res) => res.json()).then((data) => {})
         notify();
     }
     return (
