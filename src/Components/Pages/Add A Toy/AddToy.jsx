@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { AuthDetials } from '../../Providers/AuthProviders';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,7 +40,7 @@ const AddToy = () => {
             description,
         }
 
-        fetch("https://server-side-detectiveseo.vercel.app/add-new", {
+        fetch("http://localhost:3000/add-new", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

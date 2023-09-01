@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import  { useContext, useEffect, useRef, useState } from 'react';
 import { AuthDetials } from '../../Providers/AuthProviders';
 import { Link } from 'react-router-dom';
-import { data } from 'autoprefixer';
 
 const AllToys = () => {
     const {searchkey} = useContext(AuthDetials);
@@ -10,12 +8,10 @@ const AllToys = () => {
     const [priceFilter, setPriceFilter] = useState("")
     const { loader } = useContext(AuthDetials);
     const filter = useRef();
-    const navigate = useNavigate()
-    console.log(searchkey)
 
 
     useEffect(() => {
-        fetch(`https://server-side-detectiveseo.vercel.app/products?filter=${priceFilter}&key=${searchkey}`)
+        fetch(`http://localhost:3000/products?filter=${priceFilter}&key=${searchkey}`)
         .then((res) => res.json()).then((data) => setProducts(data))
     }, [priceFilter, searchkey])
     const handleFilter = () => {
@@ -40,7 +36,7 @@ const AllToys = () => {
 
             <div className='text-end'>
                 <select ref={filter} onChange={handleFilter} name="filter" id="" className='p-2 border border-black'>
-                    <option value="" disabled selected>Filter By Price</option>
+                    <option value="">Filter By Price</option>
                     <option value="low">Low to Up</option>
                     <option value="height">Height To Low</option>
                 </select>

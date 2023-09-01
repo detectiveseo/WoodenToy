@@ -1,11 +1,9 @@
-import React, { Children } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import Home from './Components/Pages/Home/Home';
 import AllToys from './Components/Pages/All Toys/AllToys';
 import MyToys from './Components/Pages/My Toys/MyToys';
 import Blogs from './Components/Pages/Blogs/Blogs';
-
 import SingUp from './Components/Pages/Account/Sing-up/SingUp';
 import SingIn from './Components/Pages/Account/Login/SingIn';
 import LogReg from './Components/Pages/Account/LogReg';
@@ -34,7 +32,7 @@ const router = createBrowserRouter([
             {
                 path: "/toy/:id",
                 element: <PrivateRoute><SingleToy /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://server-side-detectiveseo.vercel.app/products/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/products/${params.id}`)
             },
             {
                 path: "/my-toys",
@@ -89,7 +87,7 @@ const router = createBrowserRouter([
             {
                 path: "/edit/:id",
                 element: <EditToy />,
-                loader: ({params}) => fetch(`https://server-side-detectiveseo.vercel.app/products/${params.id}`) 
+                loader: ({params}) => fetch(`http://localhost:3000/products/${params.id}`) 
             }
         ]
     },

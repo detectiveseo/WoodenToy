@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import { BiEdit } from 'react-icons/bi';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthDetials } from '../../Providers/AuthProviders';
 
@@ -41,7 +41,7 @@ const MyToys = () => {
                 fetch(`https://server-side-detectiveseo.vercel.app/product/${id}`, {
                     method: "DELETE",
                 }).then((res) => res.json())
-                .then((data) => {
+                .then(() => {
                     const remaining = products.filter(product => product._id !== id);
                     setProducts(remaining);
                 })
